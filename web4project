@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Web Developer Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  :root {
+    --color-bg-start: #e6f0ff; /* soft pastel blue */
+    --color-bg-end: #ffffff;
+    --color-primary: #111827;
+    --color-secondary: #6b7280;
+    --color-accent: #111827;
+    --border-radius: 0.75rem;
+    --shadow-light: rgba(0,0,0,0.07);
+    --max-width: 1200px;
+    --transition-speed: 0.3s;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+    color: var(--color-secondary);
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: border-color var(--transition-speed);
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  /* Navbar */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255 255 255 / 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    box-shadow: 0 2px 12px var(--shadow-light);
+    z-index: 1000;
+    transition: background-color 0.4s ease;
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    user-select: none;
+    cursor: default;
+    transition: color var(--transition-speed);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--transition-speed), transform 0.2s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a:focus {
+    border-color: var(--color-accent);
+    transform: scale(1.08);
+    outline: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Hero Section */
+  header.hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    text-align: center;
+    color: var(--color-primary);
+    animation: fadeSlideIn 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  header.hero h1 {
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+  header.hero p {
+    font-weight: 500;
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-secondary);
+  }
+
+  /* Section Headings */
+  section h2 {
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    user-select: none;
+    text-align: center;
+  }
+
+  /* Skills Section */
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .skill-card {
+    background: var(--color-bg-end);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px -6px var(--shadow-light);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    user-select: none;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: default;
+    opacity: 0;
+    animation: fadeSlideIn 0.6s ease forwards;
+  }
+  .skill-card:nth-child(1) { animation-delay: 0.3s; }
+  .skill-card:nth-child(2) { animation-delay: 0.45s; }
+  .skill-card:nth-child(3) { animation-delay: 0.6s; }
+  .skill-card:nth-child(4) { animation-delay: 0.75s; }
+
+  .skill-card:hover,
+  .skill-card:focus-visible {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 32px -12px var(--shadow-light);
+    outline: none;
+  }
+
+  /* Projects Section */
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6rem;
+    opacity: 0;
+    animation: fadeSlideIn 0.8s ease forwards;
+    animation-delay: 1s;
+  }
+  .project-card {
+    background: var(--color-bg-end);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px -8px var(--shadow-light);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    cursor: default;
+    transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+  }
+  .project-card:focus-visible,
+  .project-card:hover {
+    box-shadow: 0 25px 40px -10px var(--shadow-light);
+    transform: translateY(-8px);
+    outline: none;
+  }
+  .project-card h3 {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0;
+    user-select: none;
+  }
+  .project-card p {
+    margin: 0;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .project-link {
+    margin-top: auto;
+    display: inline-block;
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: text-decoration var(--transition-speed), transform 0.25s ease;
+  }
+  .project-link:hover,
+  .project-link:focus {
+    text-decoration: underline;
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--color-bg-end);
+    box-shadow: 0 -2px 12px var(--shadow-light);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    user-select: none;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  footer p {
+    margin: 0.3rem 0;
+  }
+  footer a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  footer a:hover,
+  footer a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header.hero h1 {
+      font-size: 36px;
+    }
+    .skills {
+      grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      padding: 1rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+</style>
+</head>
+<body>
+  <nav role="navigation" aria-label="Primary Navigation">
+    <div class="nav-inner container">
+      <div class="logo" tabindex="0">LARAIB MISBAH IMRAN</div>
+      <div class="nav-links">
+        <a href="#home" tabindex="0">Home</a>
+        <a href="#about" tabindex="0">About</a>
+        <a href="#contact" tabindex="0">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container" id="home" tabindex="-1">
+    <h1>LARAIB MISBAH IMRAN - Web Developer</h1>
+    <p>Creating modern, responsive websites using HTML, CSS, JavaScript, React, Java, Python, and more.</p>
+  </header>
+
+  <main class="container" role="main">
+
+    <section aria-labelledby="about" id="about" tabindex="-1">
+      <h2 id="about">Skills</h2>
+      <div class="skills" role="list">
+        <div class="skill-card" role="listitem" tabindex="0">Web Development (HTML, CSS, JavaScript)</div>
+        <div class="skill-card" role="listitem" tabindex="0">React Framework</div>
+        <div class="skill-card" role="listitem" tabindex="0">Java</div>
+        <div class="skill-card" role="listitem" tabindex="0">Python</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects" id="projects" tabindex="-1">
+      <h2 id="projects">Projects</h2>
+      <div class="projects">
+        <article class="project-card" tabindex="0">
+          <h3>Responsive Portfolio Site</h3>
+          <p>A personal portfolio website showcasing my skills and projects, built using React and styled with CSS modules.</p>
+          <a href="https://github.com/johndoe/portfolio" target="_blank" rel="noopener noreferrer" class="project-link">View Project &rarr;</a>
+        </article>
+        <article class="project-card" tabindex="0">
+          <h3>Java Task Manager</h3>
+          <p>A desktop task management app created in Java featuring task prioritization and reminders.</p>
+          <a href="https://github.com/johndoe/java-task-manager" target="_blank" rel="noopener noreferrer" class="project-link">View Project &rarr;</a>
+        </article>
+        <article class="project-card" tabindex="0">
+          <h3>Python Web Scraper</h3>
+          <p>A Python script to scrape and extract data from dynamic websites, using BeautifulSoup and Selenium.</p>
+          <a href="https://github.com/johndoe/python-web-scraper" target="_blank" rel="noopener noreferrer" class="project-link">View Project &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo" id="contact" tabindex="-1">
+    <p>Contact Me:</p>
+    <p>Email: <a href="mailto.laraib@gmail.com">laraib123@gmail.com</a></p>
+    <p>Phone: +91 9798930522</p>
+    <p>© 2024 LARAIB MISBAH IMRAN</p>
+  </footer>
+
+  <script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.focus();
+          target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
