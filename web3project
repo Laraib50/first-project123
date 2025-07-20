@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Project</title>
+    <style>
+        /* Import modern font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --color-bg: #ffffff;
+            --color-primary: #111827;
+            --color-secondary: #6b7280;
+            --color-accent: #111827;
+            --color-button-bg: #111827;
+            --color-button-hover: #333f58;
+            --color-card-bg: #f9fafb;
+            --border-radius: 0.75rem;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --transition-speed: 0.3s;
+            --max-width: 1200px;
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-secondary);
+            line-height: 1.6;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color var(--transition-speed);
+        }
+        a:hover, a:focus {
+            border-color: var(--color-accent);
+            outline: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--color-bg);
+            box-shadow: 0 2px 8px var(--shadow-light);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+        nav .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            user-select: none;
+            letter-spacing: -0.02em;
+        }
+        nav .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        nav button {
+            background: transparent;
+            border: 2px solid var(--color-button-bg);
+            color: var(--color-button-bg);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+        }
+        nav button:hover,
+        nav button:focus {
+            background-color: var(--color-button-hover);
+            color: #fff;
+            transform: scale(1.05);
+            outline: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            text-align: center;
+            color: var(--color-primary);
+        }
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            user-select: none;
+            line-height: 1.1;
+        }
+        .hero p {
+            font-weight: 500;
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color-secondary);
+            line-height: 1.5;
+        }
+        .hero .cta-button {
+            margin-top: 3rem;
+            background-color: var(--color-button-bg);
+            color: #fff;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        }
+        .hero .cta-button:hover,
+        .hero .cta-button:focus {
+            background-color: var(--color-button-hover);
+            transform: scale(1.05);
+            outline: none;
+        }
+
+        /* Section styling */
+        section {
+            background-color: var(--color-card-bg);
+            box-shadow: 0 2px 10px var(--shadow-light);
+            border-radius: var(--border-radius);
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem 2rem;
+        }
+        section h2 {
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            user-select: none;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-primary);
+        }
+        .quiz-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .question {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 0.75rem;
+        }
+        .options label {
+            display: block;
+            padding: 0.75rem 1rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+        .options label:hover {
+            background-color: #f0f0f0;
+            border-color: var(--color-accent);
+        }
+        input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        #submit-quiz {
+            background-color: var(--color-button-bg);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+        #submit-quiz:hover,
+        #submit-quiz:focus {
+            background-color: var(--color-button-hover);
+            outline: none;
+        }
+        #result {
+            margin-top: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* API Data Styles */
+        .api-data-container {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-primary);
+        }
+        .api-data-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        #joke {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        #api-error {
+            color: #e02424;
+            font-weight: 600;
+        }
+
+        /* Responsive Design using Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.125rem;
+            }
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-inner container">
+            <div class="logo">CombinedProject</div>
+            <div class="nav-buttons">
+                <button type="button" onclick="alert('Home button clicked')">Home</button>
+                <button type="button" onclick="alert('About button clicked')">About</button>
+                <button type="button" onclick="alert('Contact button clicked')">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero container" role="banner">
+        <h1>Interactive Web Features</h1>
+        <p>Explore a quiz, API data fetching, and responsive design in one project.</p>
+        <button class="cta-button" type="button" onclick="alert('Let\'s explore!')">Explore</button>
+    </header>
+
+    <!-- Interactive Quiz -->
+    <section class="container quiz-container" aria-labelledby="quiz-title">
+        <h2 id="quiz-title">Interactive Quiz</h2>
+        <div id="quiz">
+            <div class="question" id="question1">What is the capital of France?</div>
+            <ul class="options">
+                <li><label><input type="radio" name="q1" value="Paris"> Paris</label></li>
+                <li><label><input type="radio" name="q1" value="London"> London</label></li>
+                <li><label><input type="radio" name="q1" value="Berlin"> Berlin</label></li>
+            </ul>
+            <div class="question" id="question2">What is 2 + 2?</div>
+            <ul class="options">
+                <li><label><input type="radio" name="q2" value="3"> 3</label></li>
+                <li><label><input type="radio" name="q2" value="4"> 4</label></li>
+                <li><label><input type="radio" name="q2" value="5"> 5</label></li>
+            </ul>
+            <button id="submit-quiz">Submit Quiz</button>
+            <div id="result"></div>
+        </div>
+    </section>
+
+    <!-- Fetch Data from API -->
+    <section class="container api-data-container" aria-labelledby="api-data-title">
+        <h2 id="api-data-title">Fetch Data from API</h2>
+        <div id="api-data">
+            <p id="joke">Loading joke...</p>
+            <p id="api-error"></p>
+        </div>
+    </section>
+
+    <script>
+        // Interactive Quiz
+        document.getElementById('submit-quiz').addEventListener('click', function() {
+            let score = 0;
+            let q1Answer = document.querySelector('input[name="q1"]:checked');
+            let q2Answer = document.querySelector('input[name="q2"]:checked');
+
+            if (q1Answer && q1Answer.value === "Paris") {
+                score++;
+            }
+            if (q2Answer && q2Answer.value === "4") {
+                score++;
+            }
+
+            document.getElementById('result').textContent = "You scored " + score + " out of 2!";
+        });
+
+        // Fetch Data from API (Joke API)
+        async function fetchJoke() {
+            try {
+                const response = await fetch('https://v2.jokeapi.dev/joke/Programming,Christmas?blacklistFlags=nsfw,racist,sexist,explicit&safe-mode');
+                const data = await response.json();
+
+                if (data.type === 'single') {
+                    document.getElementById('joke').textContent = data.joke;
+                } else {
+                    document.getElementById('joke').textContent = data.setup + " ... " + data.delivery;
+                }
+            } catch (error) {
+                console.error("Error fetching joke:", error);
+                document.getElementById('joke').textContent = "Failed to load joke.";
+                document.getElementById('api-error').textContent = "Error: Could not fetch data from the API.";
+            }
+        }
+
+        fetchJoke(); // Call the function to fetch the joke when the page loads
+    </script>
+</body>
+</html>
